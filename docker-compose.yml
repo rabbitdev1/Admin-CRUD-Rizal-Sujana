@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin-crud_toko_admin
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    restart: always
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-crud_toko_admin
+    environment:
+      MYSQL_ROOT_PASSWORD: crud_toko_admin-password123
+      MYSQL_DATABASE: crud_toko_admin
+      MYSQL_USER: crud_toko_admin-db
+      MYSQL_PASSWORD: crud_toko_admin-password123
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-pcrud_toko_admin-password123']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: DockerFile
+    container_name: hometest-server
+    ports:
+      - '5000:5000'
+    working_dir: /app
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
