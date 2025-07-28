@@ -76,7 +76,6 @@ export default function ProductPage() {
                 <TableColumn>Nama</TableColumn>
                 <TableColumn>Deskripsi</TableColumn>
                 <TableColumn>Harga</TableColumn>
-                <TableColumn>Tanggal Dibuat</TableColumn>
                 <TableColumn>Aksi</TableColumn>
               </TableHeader>
               <TableBody emptyContent="Tidak ada produk tersedia.">
@@ -85,7 +84,6 @@ export default function ProductPage() {
                     <TableCell>{p.nama}</TableCell>
                     <TableCell>{p.deskripsi}</TableCell>
                     <TableCell>Rp {parseFloat(p.harga).toLocaleString()}</TableCell>
-                    <TableCell>{new Date(p.created_at).toLocaleDateString()}</TableCell>
                     <TableCell className="flex gap-2">
                       <Button size="sm" color="warning" onClick={() => handleEdit(p)}>
                         Edit
