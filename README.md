@@ -1,159 +1,247 @@
-# API Documentation
+# Stock Management API
 
-## Stock Management API Documentation
+## Deskripsi
+Aplikasi Stock Management ini memungkinkan Anda untuk mengelola data stok produk dengan mudah. Anda dapat menambah, mengedit, dan menghapus stok produk menggunakan API berbasis Express.js. Frontend aplikasi ini dapat menggunakan React atau Vue untuk interaksi pengguna.
 
-This API documentation provides details about the available routes and their functionalities in the Stock Management application.
+## Fitur
+- Menambah stok produk
+- Mengedit data stok produk
+- Menghapus produk dari stok
+- API berbasis Express.js
+- Frontend berbasis React atau Vue
 
-## Base URL
+## Instalasi
 
-The base URL for all the routes is:  http://localhost:5000
+### Backend (Express.js)
+
+1. Clone repositori:
+
+    ```bash
+    git clone https://github.com/username/repository.git
+    cd repository
+    ```
+
+2. Instal dependensi:
+
+    ```bash
+    npm install
+    ```
+
+3. Jalankan server:
+
+    ```bash
+    npm start
+    ```
+
+    Server akan berjalan di `http://localhost:5000`.
+
+### Frontend (React / Vue)
+
+1. Clone repositori frontend:
+
+    ```bash
+    git clone https://github.com/username/frontend-react.git
+    cd frontend-react
+    ```
+
+2. Instal dependensi:
+
+    ```bash
+    npm install
+    ```
+
+3. Jalankan aplikasi frontend:
+
+    ```bash
+    npm start
+    ```
+
+    Aplikasi frontend akan berjalan di `http://localhost:3000`.
+
+## Docker
+
+Untuk menjalankan aplikasi ini dalam Docker, ikuti langkah-langkah berikut:
+
+1. Membangun image Docker:
+
+    ```bash
+    docker build -t stock-management .
+    ```
+
+2. Menjalankan container:
+
+    ```bash
+    docker run -p 5000:5000 stock-management
+    ```
+
+    Aplikasi akan berjalan di `http://localhost:5000`.
+
+## Teknologi yang Digunakan
+
+- Backend: Express.js
+- Frontend: React / Vue
+- Docker untuk containerization
 
 
-## Authentication Routes
+## Rute Autentikasi
 
 ### Login
 
 - **URL**: `/api/login`
-- **Method**: `POST`
-- **Description**: Authenticates a user and generates an authentication token.
+- **Metode**: `POST`
+- **Deskripsi**: Mengautentikasi pengguna dan menghasilkan token autentikasi.
 - **Request Body**:
-  - `email`: User's email (string)
-  - `password`: User's password (string)
+  - `email`: Email pengguna (string)
+  - `password`: Kata sandi pengguna (string)
 
 ### Register
 
 - **URL**: `/api/register`
-- **Method**: `POST`
-- **Description**: Registers a new user.
+- **Metode**: `POST`
+- **Deskripsi**: Mendaftarkan pengguna baru.
 - **Request Body**:
-  - `email`: User's email (string)
-  - `password`: User's password (string)
+  - `email`: Email pengguna (string)
+  - `password`: Kata sandi pengguna (string)
 
 ### Logout
 
 - **URL**: `/api/logout`
-- **Method**: `GET`
-- **Description**: Logs out the user by invalidating their authentication token.
-- **Authentication Required**: Yes
+- **Metode**: `GET`
+- **Deskripsi**: Mengeluarkan pengguna dengan menginvalidasi token autentikasi mereka.
+- **Autentikasi Diperlukan**: Ya
 
-## Product Routes
+## Rute Produk
 
-### Get All Products
-
-- **URL**: `/api/products`
-- **Method**: `GET`
-- **Description**: Retrieves a list of all products in the system.
-- **Authentication Required**: Yes
-
-### Create Product
+### Mendapatkan Semua Produk
 
 - **URL**: `/api/products`
-- **Method**: `POST`
-- **Description**: Adds a new product to the system.
-- **Authentication Required**: Yes
-- **Request Body**:
-  - `nama`: Product's name (string)
-  - `deskripsi`: Product's description (string)
-  - `harga`: Product's price (number)
+- **Metode**: `GET`
+- **Deskripsi**: Mengambil daftar semua produk dalam sistem.
+- **Autentikasi Diperlukan**: Ya
 
-### Update Product
+### Membuat Produk
+
+- **URL**: `/api/products`
+- **Metode**: `POST`
+- **Deskripsi**: Menambahkan produk baru ke dalam sistem.
+- **Autentikasi Diperlukan**: Ya
+- **Request Body**:
+  - `nama`: Nama produk (string)
+  - `deskripsi`: Deskripsi produk (string)
+  - `harga`: Harga produk (number)
+
+### Memperbarui Produk
 
 - **URL**: `/api/products/{id}`
-- **Method**: `PUT`
-- **Description**: Updates an existing product by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `PUT`
+- **Deskripsi**: Memperbarui produk yang ada berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
 - **Request Body**:
-  - `nama`: Product's name (string)
-  - `deskripsi`: Product's description (string)
-  - `harga`: Product's price (number)
+  - `nama`: Nama produk (string)
+  - `deskripsi`: Deskripsi produk (string)
+  - `harga`: Harga produk (number)
 
-### Delete Product
+### Menghapus Produk
 
 - **URL**: `/api/products/{id}`
-- **Method**: `DELETE`
-- **Description**: Deletes a product by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `DELETE`
+- **Deskripsi**: Menghapus produk berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
 
-## Stock Routes
+## Rute Stok
 
-### Get All Stocks
-
-- **URL**: `/api/stock`
-- **Method**: `GET`
-- **Description**: Retrieves a list of all stock items.
-- **Authentication Required**: Yes
-
-### Add Stock
+### Mendapatkan Semua Stok
 
 - **URL**: `/api/stock`
-- **Method**: `POST`
-- **Description**: Adds stock to a product in the system.
-- **Authentication Required**: Yes
-- **Request Body**:
-  - `produk_id`: ID of the product (integer)
-  - `kuantitas`: Quantity of the stock (integer)
+- **Metode**: `GET`
+- **Deskripsi**: Mengambil daftar semua stok produk.
+- **Autentikasi Diperlukan**: Ya
 
-### Update Stock
+### Menambahkan Stok
+
+- **URL**: `/api/stock`
+- **Metode**: `POST`
+- **Deskripsi**: Menambahkan stok untuk produk dalam sistem.
+- **Autentikasi Diperlukan**: Ya
+- **Request Body**:
+  - `produk_id`: ID produk (integer)
+  - `kuantitas`: Jumlah stok yang tersedia (integer)
+
+### Memperbarui Stok
 
 - **URL**: `/api/stock/{id}`
-- **Method**: `PUT`
-- **Description**: Updates the stock quantity of a specific product by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `PUT`
+- **Deskripsi**: Memperbarui jumlah stok untuk produk tertentu berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
 - **Request Body**:
-  - `produk_id`: ID of the product (integer)
-  - `kuantitas`: Updated quantity of the stock (integer)
+  - `produk_id`: ID produk (integer)
+  - `kuantitas`: Jumlah stok yang diperbarui (integer)
 
-### Delete Stock
+### Menghapus Stok
 
 - **URL**: `/api/stock/{id}`
-- **Method**: `DELETE`
-- **Description**: Deletes stock entry for a specific product by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `DELETE`
+- **Deskripsi**: Menghapus entri stok untuk produk tertentu berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
 
-## Purchase Routes
+## Rute Pembelian
 
-### Create Purchase
-
-- **URL**: `/api/pembelian`
-- **Method**: `POST`
-- **Description**: Creates a new purchase transaction.
-- **Request Body**:
-  - `produk_id`: ID of the product being purchased (integer)
-  - `kuantitas`: Quantity of the product being purchased (integer)
-  - `status`: Status of the purchase (string: `pending`, `completed`, etc.)
-
-### Get All Purchases
+### Membuat Pembelian
 
 - **URL**: `/api/pembelian`
-- **Method**: `GET`
-- **Description**: Retrieves a list of all purchase transactions.
-- **Authentication Required**: Yes
-
-### Update Purchase
-
-- **URL**: `/api/pembelian/{id}`
-- **Method**: `PUT`
-- **Description**: Updates an existing purchase transaction by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `POST`
+- **Deskripsi**: Membuat transaksi pembelian baru.
 - **Request Body**:
-  - `produk_id`: ID of the product (integer)
-  - `kuantitas`: Updated quantity (integer)
-  - `status`: Updated purchase status (string)
+  - `produk_id`: ID produk yang dibeli (integer)
+  - `kuantitas`: Jumlah produk yang dibeli (integer)
+  - `status`: Status pembelian (string: `pending`, `completed`, dll.)
 
-### Delete Purchase
+### Mendapatkan Semua Pembelian
+
+- **URL**: `/api/pembelian`
+- **Metode**: `GET`
+- **Deskripsi**: Mengambil daftar semua transaksi pembelian.
+- **Autentikasi Diperlukan**: Ya
+
+### Memperbarui Pembelian
 
 - **URL**: `/api/pembelian/{id}`
-- **Method**: `DELETE`
-- **Description**: Deletes a specific purchase transaction by its ID.
-- **Authentication Required**: Yes
+- **Metode**: `PUT`
+- **Deskripsi**: Memperbarui transaksi pembelian yang ada berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
+- **Request Body**:
+  - `produk_id`: ID produk (integer)
+  - `kuantitas`: Jumlah pembelian yang diperbarui (integer)
+  - `status`: Status pembelian yang diperbarui (string)
 
-## Error Responses
+### Menghapus Pembelian
 
-- **400 Bad Request**: The request was invalid, please check the request body or parameters.
-- **401 Unauthorized**: Authentication is required or failed.
-- **404 Not Found**: The requested resource was not found.
-- **500 Internal Server Error**: An error occurred on the server.
+- **URL**: `/api/pembelian/{id}`
+- **Metode**: `DELETE`
+- **Deskripsi**: Menghapus transaksi pembelian tertentu berdasarkan ID-nya.
+- **Autentikasi Diperlukan**: Ya
 
-## Conclusion
+## Respons Error
 
-This documentation provides the necessary information to interact with the Stock Management API. Ensure to provide the appropriate authentication token for routes that require authentication. For more information or contributions, feel free to contact the API maintainer.
+- **400 Bad Request**: Permintaan tidak valid, silakan periksa body permintaan atau parameter.
+- **401 Unauthorized**: Autentikasi diperlukan atau gagal.
+- **404 Not Found**: Sumber daya yang diminta tidak ditemukan.
+- **500 Internal Server Error**: Terjadi kesalahan di server.
+
+## Kesimpulan
+
+Dokumentasi ini memberikan informasi yang diperlukan untuk berinteraksi dengan API Manajemen Stok. Pastikan untuk menyediakan token autentikasi yang sesuai untuk rute-rute yang memerlukan autentikasi. Untuk informasi lebih lanjut atau kontribusi, silakan hubungi pemelihara API.
+
+
+## Pembuat
+
+- **Nama**: [Rizal Sujana](https://github.com/rabbitdev)
+- **Email**: zalsujana07@email.com
+- **linkeid**: Rizal Sujana
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah lisensi MIT. Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
+
+
+
