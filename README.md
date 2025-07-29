@@ -10,6 +10,12 @@ Aplikasi Stock Management ini memungkinkan Anda untuk mengelola data stok produk
 - API berbasis Express.js
 - Frontend berbasis React atau Vue
 
+## Screenshot
+![Gambar 1](screenshot/1.png)
+![Gambar 2](screenshot/2.png)
+![Gambar 3](screenshot/3.png)
+![Gambar 4](screenshot/4.png)
+
 ## Instalasi
 
 ### Backend (Express.js)
